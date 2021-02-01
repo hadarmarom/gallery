@@ -1,14 +1,16 @@
 'use strict'
-
+var gCurrProject;
 function init() {
   renderPortabeloGrid()
-  // renderPortabeloModal()
+  renderPortabeloModal()
 }
 
 function renderPortabeloGrid() {
   var projs = getExProjects();
   var strHtmls = projs.map(function (proj) {
-    return `<a class= " portfolio-link" data-toggle="modal" href="#portfolioModal${proj.id}">
+    gCurrProject=proj
+    return `        <div class="col-md-4 col-sm-6 portfolio-item">
+    <a class= " portfolio-link" data-toggle="modal" href="#portfolioModal">
       <div class="portfolio-hover">
         <div class="portfolio-hover-content">
           <i class="fa fa-plus fa-3x"></i>
@@ -20,16 +22,15 @@ function renderPortabeloGrid() {
       <h4>${proj.labels[0]}</h4>
       <p class="text-muted">${proj.labels[1]}</p>
       </div>
-      </div>`
+      </div> `
   })
-  $('.portfolio-item').html(strHtmls)
+  $('.put-the-proj-her').html(strHtmls)
 }
 
 function renderPortabeloModal() {
   var projs = getExProjects();
-  var strHtmls = projs.map(function (proj) {
+  var strHtmls = projs.forEach(function (proj) {
 
-    console.log('in');
     return `     <h2>Project Name</h2>
                 <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                 <img class="img-fluid d-block mx-auto" src="img/portfolio/${proj.id}.jpg" alt="">
